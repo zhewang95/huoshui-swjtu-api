@@ -1,5 +1,5 @@
 #交大瑞士刀api
-尽量遵循RESTful风格开发，但有些地方可能依然不符合标准
+尽量遵循RESTful风格编写，但有些地方可能仍然不符合标准
 ###docs
 1. 验证用户身份/获得接口权限
 ```
@@ -99,7 +99,7 @@ GET https://api.wangzhe.cloud/classes?name=高等数学
     ]
 }
 ```
-6. 查询专业免研主干课程
+6. 查询所在专业免研主干课程
 ```
 GET https://api.wangzhe.cloud/majorclasses
 =>
@@ -136,7 +136,7 @@ GET https://api.wangzhe.cloud
 GET https://api.wangzhe.cloud/loginform
 ```
 
-3. 查询登录状态
+3. 查询登录状态/接口权限
 ```
 GET https://api.wangzhe.cloud/login
 已登录=>
