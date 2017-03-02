@@ -1,7 +1,7 @@
 /**
  * Created by wz on 17-3-2.
  */
-var router=require('express').Router(),
+var router = require('express').Router(),
     passport = require('passport'),
     getMeanRank = require('./utils/calMeanRank'),
     TeacherRanks = require('./models/TeacherRanks'),
@@ -12,6 +12,7 @@ router.get('/', function (req, res, next) {
     res.send({
         'login': 'https://api.wangzhe.cloud/login',
         'baseinfo': 'https://api.wangzhe.cloud/info',
+        'mean score and rank': 'https://api.wangzhe.cloud/rank',
         'major classes': 'https://api.wangzhe.cloud/majorclasses',
         'query classes stat': 'https://api.wangzhe.cloud/classes?name=name',
         'login form': 'https://api.wangzhe.cloud/loginform'
@@ -191,4 +192,4 @@ router.all(function (req, res, next) {
     res.failed('404 not found');
 });
 
-module.exports=router;
+module.exports = router;
