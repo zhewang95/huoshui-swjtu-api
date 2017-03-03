@@ -24,7 +24,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     store: new dbCached({
-        mongooseConnection: mongoose.connectio,
+        mongooseConnection: mongoose.connectio
     })
 }));
 app.use(passport.initialize());
