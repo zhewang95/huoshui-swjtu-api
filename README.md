@@ -86,9 +86,9 @@ GET https://api.wangzhe.cloud/classes?name=高等数学
             "teachers": [
                 {
                     "name": "王中宝",
-                    "all": "294",
-                    "E": "27",
-                    "A": "68",
+                    "all": "294", //成绩记录总数
+                    "E": "27", //60分以下记录数
+                    "A": "68", //90分及以上记录数
                     "mean": "76.81",
                     "std": "18.67"
                 },
@@ -112,11 +112,11 @@ GET https://api.wangzhe.cloud/majorclasses
             "majorname": "软件工程",
             "classes": [
                 {
-                    "courseid": "3244153",
-                    "coursename": "编译原理B",
-                    "coursetype": "必",
-                    "coursecredit": "4.0",
-                    "remark": ""
+                    "id": "3244153",
+                    "name": "编译原理B",
+                    "type": "必",
+                    "credit": "4.0",
+                    "remark": "" //备注
                 },
                 ...//1到多个课程
             ],
