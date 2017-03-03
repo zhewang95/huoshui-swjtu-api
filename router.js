@@ -35,10 +35,6 @@ router.post('/login', passport.authenticate('swjtuLogin', {
     failureRedirect: 'login'
 }));
 
-router.get('/failed', function (req, res, next) {
-    res.send({status: 'failed'});
-});
-
 router.get('/info', function (req, res, next) {
     if (req.isAuthenticated()) {
         var stu = req.user;
@@ -106,7 +102,7 @@ router.post('/rank', function (req, res, next) {
             obj['validclasses'] = validclasses;
             var invalidclasses = [];
             ivc = ret[3].split('\n').map(function (x) {
-                t = x.split(' ')
+                t = x.split(' ');
                 invalidclasses.push(Object()[t[0]] = t[1])
             });
             obj['invalidclasses'] = invalidclasses;
@@ -169,10 +165,10 @@ router.get('/majorclasses', function (req, res, next) {
                 result.classes.split('#').map(function (x) {
                     var t = x.split('*');
                     classes.push({
-                        'courseid': t[3],
-                        'coursename': t[4],
-                        'coursetype': t[5],
-                        'coursecredit': t[6],
+                        'id': t[3],
+                        'name': t[4],
+                        'type': t[5],
+                        'credit': t[6],
                         'remark': t[8]
                     });
                 });

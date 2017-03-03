@@ -5,7 +5,7 @@ var express = require('express'),
     path = require('path'),
     mongoose = require('mongoose'),
     dbConnector = require('./dbConnector'),
-    passport=require('passport'),
+    passport = require('passport'),
     session = require('express-session'),
     dbCached = require('connect-mongo')(session),
     bodyParser = require('body-parser'),
@@ -24,7 +24,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true,
     store: new dbCached({
-        mongooseConnection: mongoose.connection
+        mongooseConnection: mongoose.connectio,
     })
 }));
 app.use(passport.initialize());
