@@ -34,6 +34,7 @@ GET https://api.wangzhe.cloud/rank
     "status": "success",
     "mean": 100.0,
     "rank": 1,
+    "all": 118,
     "validcourses": [
         {
             "name":"线性代数B",
@@ -60,6 +61,7 @@ POST https://api.wangzhe.cloud/rank
     "status": "success",
     "mean": 100.0,
     "rank": 1,
+    "all": 118,
     "validcourses": [
         {
             "name":"线性代数B",
