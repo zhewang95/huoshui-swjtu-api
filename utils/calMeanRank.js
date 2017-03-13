@@ -18,7 +18,7 @@ function getMeanRank(stu, filter, next) {
         stus = stus.map(function (x) {
             return {
                 sid: x.sid,
-                classes: stu.validclasses.concat(stu.invalidclasses),
+                classes: x.validclasses.concat(x.invalidclasses),
                 validclasses: [],
                 invalidclasses: [],
                 valid: 0,

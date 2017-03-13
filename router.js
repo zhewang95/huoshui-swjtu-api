@@ -78,20 +78,8 @@ router.post('/rank', function (req, res, next) {
             obj['mean'] = ret[0];
             obj['rank'] = ret[1];
             obj['all'] = ret[2];
-            var validclasses = [];
-            ret[3].split('\n').map(function (x) {
-                var t = x.split(' ');
-                var o = Object();
-                o[t[0]] = t[1];
-                validclasses.push(o);
-            });
-            obj['validcourses'] = validclasses;
-            var invalidclasses = [];
-            ret[4].split('\n').map(function (x) {
-                var t = x.split(' ');
-                invalidclasses.push(Object()[t[0]] = t[1])
-            });
-            obj['invalidcourses'] = invalidclasses;
+            obj['validcourses'] = ret[3];
+            obj['invalidcourses'] = ret[4];
             res.send(obj);
         });
     }
