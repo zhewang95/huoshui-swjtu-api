@@ -7,19 +7,10 @@ function getMeanRank(stu, filter, next) {
     var major = stu.major;
     var grade = stu.grade;
     var sid = stu.sid;
-    var vc = stu.validclasses.split('\n');
-    if (!filter) {
-        filter = vc.map(function (x) {
-            return x.split(' ');
-        });
-    }
     filter.find = function (name) {
-        if (typeof filter[name] !== "undefined")
-            return true;
-        for (var i = 0; i < filter.length; i++) {
-            if (filter[i][0] == name)
+        for (var i = 0; i < filter.length; i++)
+            if (filter[i]['name'] == name)
                 return true;
-        }
         return false;
     };
 
@@ -27,7 +18,7 @@ function getMeanRank(stu, filter, next) {
         stus = stus.map(function (x) {
             return {
                 sid: x.sid,
-                classes: (stu.validclasses ? stu.validclasses.split('\n') : []).concat((stu.invalidclasses ? stu.invalidclasses.split('\n') : [])),
+                classes: stu.validclasses.concat(stu.invalidclasses),
                 validclasses: [],
                 invalidclasses: [],
                 valid: 0,
@@ -36,20 +27,17 @@ function getMeanRank(stu, filter, next) {
             }
         });
         for (var i = 0; i < stus.length; i++) {
-            stus[i].classes = stus[i].classes.map(function (x) {
-                return x.split(' ')
-            });
-            s = stus[i];
+            var s = stus[i];
             for (var j = 0; j < s.classes.length; j++) {
-                c = s.classes[j];
-                if (filter.find(c[0]) && !isNaN(Number(c[1]))) {
+                var c = s.classes[j];
+                if (filter.find(c['name']) && !isNaN(Number(c['score']))) {
                     s.valid++;
-                    s.average += Number(c[1]);
-                    s.validclasses.push(c.join(' '));
+                    s.average += Number(c['score']);
+                    s.validclasses.push(c);
                 }
                 else {
                     s.invalid++;
-                    s.invalidclasses.push(c.join(' '));
+                    s.invalidclasses.push(c);
                 }
             }
             if (s.valid != 0)
@@ -61,8 +49,8 @@ function getMeanRank(stu, filter, next) {
             if (stus[i].sid == sid) {
                 stu.valid = stus[i].valid, stu.invalid = stus[i].invalid;
                 stu.validaverage = stus[i].average;
-                stu.validclasses = stus[i].validclasses.join('\n');
-                stu.invalidclasses = stus[i].invalidclasses.join('\n');
+                stu.validclasses = stus[i].validclasses;
+                stu.invalidclasses = stus[i].invalidclasses;
                 break;
             }
         }
@@ -73,9 +61,9 @@ function getMeanRank(stu, filter, next) {
             }
         }
         stu.rank = rank;
-        stu.validaverage = stu.validaverage.toFixed(2)
+        stu.validaverage = stu.validaverage.toFixed(2);
         stu.save();
-        next([stu.validaverage, stu.rank,stu.validclasses,stu.invalidclasses]);
+        next([stu.validaverage, stu.rank, stus.length, stu.validclasses, stu.invalidclasses]);
     });
 }
 
