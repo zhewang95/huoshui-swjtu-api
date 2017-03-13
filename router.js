@@ -103,16 +103,11 @@ router.get('/classes', function (req, res, next) {
     if (req.isAuthenticated()) {
         var name = req.query['name'];
         if (name) {
-            TeacherRanks.find({coursename: new RegExp(name)}, function (err, ranks) {
+            TeacherRanks.find({coursename: new RegExp(name)}, {'_id': 0}, function (err, ranks) {
                 if (err)
                     return next(err);
                 var obj = {'statuscode': 0, 'statuc': 'success'};
-                var classes = [];
-                ranks.forEach(function (item, id, ranks) {
-                    var c = {'courseid': item.courseid, 'coursename': item.coursename, 'teachers': item.teacherrank};
-                    classes.push(c);
-                });
-                obj['classes'] = classes;
+                obj['classes'] = ranks;
                 res.send(obj);
             });
         }
@@ -126,28 +121,11 @@ router.get('/classes', function (req, res, next) {
 router.get('/majorclasses', function (req, res, next) {
     if (req.isAuthenticated()) {
         var major = req.user.major;
-        MajorClasses.find({majorname: new RegExp(major)}, function (err, results) {
+        MajorClasses.find({majorname: new RegExp(major)}, {'_id': 0, "__v": 0}, function (err, results) {
             if (err)
                 return next(err);
             var obj = {'statuscode': 0, 'status': 'success'};
-            var majors = [];
-            results.forEach(function (result) {
-                var major = {'majorcode': result.majorcode, 'majorname': result.majorname};
-                var classes = [];
-                result.classes.split('#').map(function (x) {
-                    var t = x.split('*');
-                    classes.push({
-                        'id': t[3],
-                        'name': t[4],
-                        'type': t[5],
-                        'credit': t[6],
-                        'remark': t[8]
-                    });
-                });
-                major['classes'] = classes;
-                majors.push(major);
-            });
-            obj['majors'] = majors;
+            obj['majors'] = results;
             return res.send(obj);
         })
     }
@@ -155,7 +133,7 @@ router.get('/majorclasses', function (req, res, next) {
         res.failed('unauthorized');
 });
 
-router.all(function (req, res, next) {
+router.all(function (req, res) {
     res.statusCode = 404;
     res.failed('404 not found');
 });

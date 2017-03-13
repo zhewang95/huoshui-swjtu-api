@@ -36,14 +36,16 @@ GET https://api.wangzhe.cloud/rank
     "rank": 1,
     "validclasses": [
         {
-            "线性代数B": "100.0"
+            "name":"线性代数B",
+            "score":"100.0"
         },
         ...
      ],
      "invalidclasses": [
-          {
-              "体育Ⅰ": "100.0"
-          },
+        {
+            "name":"体育Ⅰ",
+            "score":"100.0"
+        },
           ...
       ]
 }
@@ -60,13 +62,15 @@ POST https://api.wangzhe.cloud/rank
     "rank": 1,
     "validclasses": [
         {
-            "线性代数B": "100.0"
+            "name":"线性代数B",
+            "score":"100.0"
         },
         ...
      ],
      "invalidclasses": [
         {
-            "体育Ⅰ": "100.0"
+            "name":"体育Ⅰ",
+            "score":"100.0"
         },
         ...
     ]
@@ -110,6 +114,8 @@ GET https://api.wangzhe.cloud/majorclasses
         {
             "majorcode": "0408",
             "majorname": "软件工程",
+            "collegecode": "04",
+            "collegename": "信息科学与技术学院",
             "classes": [
                 {
                     "id": "3244153",
