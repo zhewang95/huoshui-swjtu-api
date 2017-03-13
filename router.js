@@ -13,8 +13,8 @@ router.get('/', function (req, res, next) {
         'login': 'https://api.wangzhe.cloud/login',
         'baseinfo': 'https://api.wangzhe.cloud/info',
         'mean score and rank': 'https://api.wangzhe.cloud/rank',
-        'major classes': 'https://api.wangzhe.cloud/majorclasses',
-        'query classes stat': 'https://api.wangzhe.cloud/classes?name=name',
+        'major courses': 'https://api.wangzhe.cloud/majorcourses',
+        'query courses stat': 'https://api.wangzhe.cloud/courses?name=name',
         'login form': 'https://api.wangzhe.cloud/loginform'
     });
 });
@@ -60,8 +60,8 @@ router.get('/rank', function (req, res, next) {
             obj['mean'] = ret[0];
             obj['rank'] = ret[1];
             obj['all'] = ret[2];
-            obj['validclasses'] = vc;
-            obj['invalidclasses'] = ivc;
+            obj['validcourses'] = vc;
+            obj['invalidcourses'] = ivc;
             res.send(obj);
         });
     }
@@ -85,13 +85,13 @@ router.post('/rank', function (req, res, next) {
                 o[t[0]] = t[1];
                 validclasses.push(o);
             });
-            obj['validclasses'] = validclasses;
+            obj['validcourses'] = validclasses;
             var invalidclasses = [];
             ret[4].split('\n').map(function (x) {
                 var t = x.split(' ');
                 invalidclasses.push(Object()[t[0]] = t[1])
             });
-            obj['invalidclasses'] = invalidclasses;
+            obj['invalidcourses'] = invalidclasses;
             res.send(obj);
         });
     }
@@ -99,7 +99,7 @@ router.post('/rank', function (req, res, next) {
         res.failed('unauthorized');
 });
 
-router.get('/classes', function (req, res, next) {
+router.get('/courses', function (req, res, next) {
     if (req.isAuthenticated()) {
         var name = req.query['name'];
         if (name) {
@@ -107,7 +107,7 @@ router.get('/classes', function (req, res, next) {
                 if (err)
                     return next(err);
                 var obj = {'statuscode': 0, 'statuc': 'success'};
-                obj['classes'] = ranks;
+                obj['courses'] = ranks;
                 res.send(obj);
             });
         }
@@ -118,7 +118,7 @@ router.get('/classes', function (req, res, next) {
         res.failed('unauthorized');
 });
 
-router.get('/majorclasses', function (req, res, next) {
+router.get('/majorcourses', function (req, res, next) {
     if (req.isAuthenticated()) {
         var major = req.user.major;
         MajorClasses.find({majorname: new RegExp(major)}, {'_id': 0, "__v": 0}, function (err, results) {

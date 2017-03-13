@@ -34,14 +34,14 @@ GET https://api.wangzhe.cloud/rank
     "status": "success",
     "mean": 100.0,
     "rank": 1,
-    "validclasses": [
+    "validcourses": [
         {
             "name":"线性代数B",
             "score":"100.0"
         },
         ...
      ],
-     "invalidclasses": [
+     "invalidcourses": [
         {
             "name":"体育Ⅰ",
             "score":"100.0"
@@ -60,14 +60,14 @@ POST https://api.wangzhe.cloud/rank
     "status": "success",
     "mean": 100.0,
     "rank": 1,
-    "validclasses": [
+    "validcourses": [
         {
             "name":"线性代数B",
             "score":"100.0"
         },
         ...
      ],
-     "invalidclasses": [
+     "invalidcourses": [
         {
             "name":"体育Ⅰ",
             "score":"100.0"
@@ -78,12 +78,12 @@ POST https://api.wangzhe.cloud/rank
 ```
 5. 查询老师给分
 ```
-GET https://api.wangzhe.cloud/classes?name=高等数学
+GET https://api.wangzhe.cloud/courses?name=高等数学
 =>
 {
     "statuscode": 0,
     "statuc": "success",
-    "classes": [
+    "courses": [
         {
             "courseid": "6010320",
             "coursename": "高等数学CⅡ",
@@ -105,7 +105,7 @@ GET https://api.wangzhe.cloud/classes?name=高等数学
 ```
 6. 查询所在专业免研主干课程
 ```
-GET https://api.wangzhe.cloud/majorclasses
+GET https://api.wangzhe.cloud/majorcourses
 =>
 {
     "statuscode": 0,
@@ -116,7 +116,7 @@ GET https://api.wangzhe.cloud/majorclasses
             "majorname": "软件工程",
             "collegecode": "04",
             "collegename": "信息科学与技术学院",
-            "classes": [
+            "courses": [
                 {
                     "id": "3244153",
                     "name": "编译原理B",
