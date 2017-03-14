@@ -14,9 +14,9 @@ var StudentsSchema = mongoose.Schema({
     major: String,
     class: String,
     valid: Number,
-    validclasses: String,
+    validclasses: Object,
     validaverage: Number,
-    invalidclasses: String,
+    invalidclasses: Object,
     rank: Number
 });
 

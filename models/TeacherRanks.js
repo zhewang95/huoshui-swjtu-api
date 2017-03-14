@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var TeacherRanksSchema = mongoose.Schema({
     courseid: {type: String, required: true, unique: true},
     coursename: String,
-    teacherrank: String
+    teacherrank: Object
 });
 
 var TeacherRanks = mongoose.model('TeacherRank', TeacherRanksSchema);

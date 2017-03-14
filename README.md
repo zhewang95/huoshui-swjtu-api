@@ -34,16 +34,19 @@ GET https://api.wangzhe.cloud/rank
     "status": "success",
     "mean": 100.0,
     "rank": 1,
-    "validclasses": [
+    "all": 118,
+    "validcourses": [
         {
-            "线性代数B": "100.0"
+            "name":"线性代数B",
+            "score":"100.0"
         },
         ...
      ],
-     "invalidclasses": [
-          {
-              "体育Ⅰ": "100.0"
-          },
+     "invalidcourses": [
+        {
+            "name":"体育Ⅰ",
+            "score":"100.0"
+        },
           ...
       ]
 }
@@ -51,22 +54,25 @@ GET https://api.wangzhe.cloud/rank
 4. 获取自定义有效课程下的平均分/排名
 ```
 POST https://api.wangzhe.cloud/rank
-     json={"高等数学Ⅰ":"100","线性代数B"：”60.0"...}//所有自定义有效课程的　课程名:分数　形式
+     json=[{"name":"高等数学Ⅰ"},...]//所有自定义有效课程的　课程名:分数　形式
 =>
 {
     "statuscode": 0,
     "status": "success",
     "mean": 100.0,
     "rank": 1,
-    "validclasses": [
+    "all": 118,
+    "validcourses": [
         {
-            "线性代数B": "100.0"
+            "name":"线性代数B",
+            "score":"100.0"
         },
         ...
      ],
-     "invalidclasses": [
+     "invalidcourses": [
         {
-            "体育Ⅰ": "100.0"
+            "name":"体育Ⅰ",
+            "score":"100.0"
         },
         ...
     ]
@@ -74,12 +80,12 @@ POST https://api.wangzhe.cloud/rank
 ```
 5. 查询老师给分
 ```
-GET https://api.wangzhe.cloud/classes?name=高等数学
+GET https://api.wangzhe.cloud/courses?name=高等数学
 =>
 {
     "statuscode": 0,
-    "statuc": "success",
-    "classes": [
+    "status": "success",
+    "courses": [
         {
             "courseid": "6010320",
             "coursename": "高等数学CⅡ",
@@ -101,7 +107,7 @@ GET https://api.wangzhe.cloud/classes?name=高等数学
 ```
 6. 查询所在专业免研主干课程
 ```
-GET https://api.wangzhe.cloud/majorclasses
+GET https://api.wangzhe.cloud/majorcourses
 =>
 {
     "statuscode": 0,
@@ -110,7 +116,9 @@ GET https://api.wangzhe.cloud/majorclasses
         {
             "majorcode": "0408",
             "majorname": "软件工程",
-            "classes": [
+            "collegecode": "04",
+            "collegename": "信息科学与技术学院",
+            "courses": [
                 {
                     "id": "3244153",
                     "name": "编译原理B",

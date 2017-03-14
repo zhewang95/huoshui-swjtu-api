@@ -8,7 +8,7 @@ var MajorClassesSchema = mongoose.Schema({
     majorname: String,
     collegecode: String,
     collegename: String,
-    classes: String
+    classes: Object
 });
 
 var MajorClasses = mongoose.model("GraduateClasses13", MajorClassesSchema);
