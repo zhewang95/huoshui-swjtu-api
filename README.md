@@ -84,7 +84,7 @@ GET https://api.wangzhe.cloud/courses?name=高等数学
 =>
 {
     "statuscode": 0,
-    "statuc": "success",
+    "status": "success",
     "courses": [
         {
             "courseid": "6010320",
