@@ -11,7 +11,7 @@ var router = require('express').Router(),
 router.get('/', function (req, res, next) {
     res.send({
         'login': 'https://api.wangzhe.cloud/login',
-        'baseinfo': 'https://api.wangzhe.cloud/info',
+        'base info': 'https://api.wangzhe.cloud/info',
         'mean score and rank': 'https://api.wangzhe.cloud/rank',
         'major courses': 'https://api.wangzhe.cloud/majorcourses',
         'query courses stat': 'https://api.wangzhe.cloud/courses?name=name',
@@ -56,12 +56,11 @@ router.get('/rank', function (req, res, next) {
         var vc = stu.validclasses;
         var ivc = stu.invalidclasses;
         getMeanRank(stu, vc, function (ret) {
-            var obj = {'statuscode': 0, 'status': 'success'};
-            obj['mean'] = ret[0];
-            obj['rank'] = ret[1];
-            obj['all'] = ret[2];
-            obj['validcourses'] = vc;
-            obj['invalidcourses'] = ivc;
+            var obj = {
+                statuscode: 0, status: 'success',
+                mean: ret[0], rank: ret[1], all: ret[2],
+                validcourses: vc, invalidcourses: ivc
+            };
             res.send(obj);
         });
     }
@@ -74,12 +73,11 @@ router.post('/rank', function (req, res, next) {
         var stu = req.user;
         var vc = req.body;
         getMeanRank(stu, vc, function (ret) {
-            var obj = {'statuscode': 0, 'status': 'success'};
-            obj['mean'] = ret[0];
-            obj['rank'] = ret[1];
-            obj['all'] = ret[2];
-            obj['validcourses'] = ret[3];
-            obj['invalidcourses'] = ret[4];
+            var obj = {
+                statuscode: 0, status: 'success',
+                mean: ret[0], rank: ret[1], all: ret[2],
+                validcourses: ret[3], invalidcourses: ret[4]
+            };
             res.send(obj);
         });
     }
@@ -94,8 +92,7 @@ router.get('/courses', function (req, res, next) {
             TeacherRanks.find({coursename: new RegExp(name)}, {'_id': 0}, function (err, ranks) {
                 if (err)
                     return next(err);
-                var obj = {'statuscode': 0, 'statuc': 'success'};
-                obj['courses'] = ranks;
+                var obj = {statuscode: 0, status: 'success', courses: ranks};
                 res.send(obj);
             });
         }
@@ -112,8 +109,7 @@ router.get('/majorcourses', function (req, res, next) {
         MajorClasses.find({majorname: new RegExp(major)}, {'_id': 0, "__v": 0}, function (err, results) {
             if (err)
                 return next(err);
-            var obj = {'statuscode': 0, 'status': 'success'};
-            obj['majors'] = results;
+            var obj = {statuscode: 0, status: 'success', majors: results};
             return res.send(obj);
         })
     }

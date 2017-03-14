@@ -4,13 +4,12 @@
 var request = require('request')
     , iconv = require('iconv-lite')
     , gm = require('gm').subClass({imageMagick: true})
-    , fs = require('fs')
     , Tesseract = require('tesseract.js');
 
 function loginonce(username, password, next) {
-    imgurl = 'http://jiaowu.swjtu.edu.cn/servlet/GetRandomNumberToJPEG';
-    url = 'http://jiaowu.swjtu.edu.cn/servlet/UserLoginSQLAction';
-    form = {
+    var imgurl = 'http://jiaowu.swjtu.edu.cn/servlet/GetRandomNumberToJPEG';
+    var url = 'http://jiaowu.swjtu.edu.cn/servlet/UserLoginSQLAction';
+    var form = {
         'url': "../usersys/index.jsp",
         'OperatingSystem': "",
         "Browser": "",
@@ -20,7 +19,7 @@ function loginonce(username, password, next) {
         "user_type": "student",
         "btn1": ""
     };
-    headers = {
+    var headers = {
         'Host': 'jiaowu.swjtu.edu.cn',
         'Referer': "http://jiaowu.swjtu.edu.cn/service/login.jsp?user_type=student",
     };

@@ -22,7 +22,6 @@ function getMeanRank(stu, filter, next) {
                 validclasses: [],
                 invalidclasses: [],
                 valid: 0,
-                invalid: 0,
                 average: 0.0
             }
         });
@@ -36,18 +35,13 @@ function getMeanRank(stu, filter, next) {
                     s.validclasses.push(c);
                 }
                 else {
-                    s.invalid++;
                     s.invalidclasses.push(c);
                 }
             }
-            if (s.valid != 0)
-                s.average = s.average / s.valid;
-            else
-                s.average = 0.0;
+            s.average = s.valid > 0 ? (s.average / s.valid) : 0.0;
         }
         for (var i = 0; i < stus.length; i++) {
             if (stus[i].sid == sid) {
-                stu.valid = stus[i].valid, stu.invalid = stus[i].invalid;
                 stu.validaverage = stus[i].average;
                 stu.validclasses = stus[i].validclasses;
                 stu.invalidclasses = stus[i].invalidclasses;
