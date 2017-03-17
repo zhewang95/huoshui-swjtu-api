@@ -1,6 +1,6 @@
-#交大瑞士刀api
+# 交大瑞士刀api
 尽量遵循RESTful风格编写，但有些地方可能仍然不符合标准
-###docs
+### docs
 1. 验证用户身份/获得接口权限
 ```
 POST https://api.wangzhe.cloud/login
@@ -133,7 +133,7 @@ GET https://api.wangzhe.cloud/majorcourses
     ]
 }
 ```
-###其他
+### 其他
 1. 查询接口列表
 ```
 GET https://api.wangzhe.cloud
