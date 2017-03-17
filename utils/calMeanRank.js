@@ -7,9 +7,10 @@ function getMeanRank(stu, filter, next) {
     var major = stu.major;
     var grade = stu.grade;
     var sid = stu.sid;
-    filter.find = function (name) {
+    filter.find = function (c) {
+        var name = c['name'], score = c['score'];
         for (var i = 0; i < filter.length; i++)
-            if (filter[i]['name'] == name)
+            if (filter[i]['name'] == name && filter[i]['score'] == score)
                 return true;
         return false;
     };
@@ -29,7 +30,7 @@ function getMeanRank(stu, filter, next) {
             var s = stus[i];
             for (var j = 0; j < s.classes.length; j++) {
                 var c = s.classes[j];
-                if (filter.find(c['name']) && !isNaN(Number(c['score']))) {
+                if (!isNaN(Number(c['score'])) && filter.find(c)) {
                     s.valid++;
                     s.average += Number(c['score']);
                     s.validclasses.push(c);
