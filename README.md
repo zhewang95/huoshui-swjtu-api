@@ -54,7 +54,7 @@ GET https://api.wangzhe.cloud/rank
 4. 获取自定义有效课程下的平均分/排名
 ```
 POST https://api.wangzhe.cloud/rank
-     json=[{"name":"高等数学Ⅰ"},...]//所有自定义有效课程的　课程名:分数　形式
+     json=[{"name":"高等数学Ⅰ","score":"100.0"},...]//所有自定义有效课程,由于可能存在重修的情况,故必须带上score
 =>
 {
     "statuscode": 0,
